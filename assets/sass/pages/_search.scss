@@ -1,0 +1,38 @@
+/* Main search bar */
+.main-search {
+    background: $lightgray;
+    border-radius: 5px;
+    Width: 100%;
+    padding: 0 22px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    &__label {
+        display: none;
+    }
+    &__input {
+        border: none;
+        background-color: inherit;
+        flex-grow: 1;
+        margin: 23px 0;
+        font-size: 18px;
+        line-height: 22px;
+        font-weight: 400;
+        @include media-size(mobile) {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        &::placeholder {
+            opacity: 0.25;
+        }
+        &:focus-visible {
+            outline: none;
+        }
+       
+        
+    }
+    &__icon {
+        font-size: 32px;
+    }
+}

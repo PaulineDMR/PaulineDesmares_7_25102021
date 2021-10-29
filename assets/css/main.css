@@ -25,6 +25,70 @@ header, main {
   }
 }
 
-/*@import "./pages/work";
-@import "./pages/about";
+/* Main search bar */
+.main-search {
+  background: #E7E7E7;
+  border-radius: 5px;
+  Width: 100%;
+  padding: 0 22px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.main-search__label {
+  display: none;
+}
+
+.main-search__input {
+  border: none;
+  background-color: inherit;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  margin: 23px 0;
+  font-size: 18px;
+  line-height: 22px;
+  font-weight: 400;
+}
+
+@media screen and (max-width: 540px) {
+  .main-search__input {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
+.main-search__input::-webkit-input-placeholder {
+  opacity: 0.25;
+}
+
+.main-search__input:-ms-input-placeholder {
+  opacity: 0.25;
+}
+
+.main-search__input::-ms-input-placeholder {
+  opacity: 0.25;
+}
+
+.main-search__input::placeholder {
+  opacity: 0.25;
+}
+
+.main-search__input:focus-visible {
+  outline: none;
+}
+
+.main-search__icon {
+  font-size: 32px;
+}
+
+/*@import "./pages/about";
 @import "./pages/project";*/
