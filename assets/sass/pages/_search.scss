@@ -29,10 +29,46 @@
         &:focus-visible {
             outline: none;
         }
-       
-        
     }
     &__icon {
         font-size: 32px;
+    }
+}
+
+/* Items selected */
+.items-selected {
+    margin-top: 25px;
+}
+
+.items-list {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.item {
+    padding: 10px 20px;
+    margin-right: 20px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    color: white;
+    display: flex;
+    align-items: center;
+    /*font-weight: 700;*/
+    &--filter1 {
+        background: $filter1-color;
+    };
+    &--filter2 {
+        background: $filter2-color;
+    };
+    &--filter3 {
+        background: $filter3-color;
+    }
+    &__name {
+        line-height: 14px;
+        padding-right: 10px;
+    }
+    &__icon {
+        font-size: 20px;
     }
 }

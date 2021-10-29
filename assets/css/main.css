@@ -90,5 +90,55 @@ header, main {
   font-size: 32px;
 }
 
+/* Items selected */
+.items-selected {
+  margin-top: 25px;
+}
+
+.items-list {
+  list-style: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.item {
+  padding: 10px 20px;
+  margin-right: 20px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  color: white;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  /*font-weight: 700;*/
+}
+
+.item--filter1 {
+  background: #3282F7;
+}
+
+.item--filter2 {
+  background: #68D9A4;
+}
+
+.item--filter3 {
+  background: #ED6454;
+}
+
+.item__name {
+  line-height: 14px;
+  padding-right: 10px;
+}
+
+.item__icon {
+  font-size: 20px;
+}
+
 /*@import "./pages/about";
 @import "./pages/project";*/
