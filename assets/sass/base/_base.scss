@@ -8,5 +8,13 @@
 }
 
 body {
+	width: 100%;
     max-width: $body-maxwidth;
+}
+
+header, main {
+    padding: 0 100px;
+    @include media-size(mobile) {
+        padding: 0 5%;
+    }
 }
