@@ -14,7 +14,7 @@ body {
 
 header, section {
     padding: 0 100px;
-    @include media-size(mobile) {
+    @include media-size(tablet) {
         padding: 0 5%;
     }
 }

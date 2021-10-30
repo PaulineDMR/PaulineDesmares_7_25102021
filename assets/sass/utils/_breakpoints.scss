@@ -1,6 +1,8 @@
 $breakpoints: (
     mobile: 540px,
-    tablet: 1200px
+    large-mobile: 768px,
+    tablet: 980px,
+    labtop: 1200px
 );
 
 @mixin media-size($device) {

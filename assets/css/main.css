@@ -19,7 +19,7 @@ header, section {
   padding: 0 100px;
 }
 
-@media screen and (max-width: 540px) {
+@media screen and (max-width: 980px) {
   header, section {
     padding: 0 5%;
   }
@@ -246,12 +246,44 @@ input:focus-visible {
       flex-wrap: wrap;
 }
 
+@media screen and (max-width: 980px) {
+  .receipes-container {
+    padding-right: 2.5%;
+  }
+}
+
 .thumb {
-  width: 380px;
+  width: calc((100% - 150px) / 3);
   height: 364px;
   margin-right: 50px;
   margin-bottom: 50px;
   border-radius: 5px;
+}
+
+@media screen and (max-width: 1200px) {
+  .thumb {
+    width: calc((100% - 100px) / 2);
+  }
+}
+
+@media screen and (max-width: 980px) {
+  .thumb {
+    width: calc((100% - 5%) / 2);
+    margin-right: 2.5%;
+    margin-bottom: 20px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .thumb {
+    height: auto;
+  }
+}
+
+@media screen and (max-width: 540px) {
+  .thumb {
+    width: calc(100% - 2.5%);
+  }
 }
 
 .thumb__picture-container {
@@ -269,6 +301,12 @@ input:focus-visible {
   border-radius: 0 0 5px 5px;
 }
 
+@media screen and (max-width: 768px) {
+  .thumb__details {
+    height: auto;
+  }
+}
+
 .thumb__header {
   width: 100%;
   display: -webkit-box;
@@ -282,9 +320,22 @@ input:focus-visible {
           align-items: baseline;
 }
 
+@media screen and (max-width: 768px) {
+  .thumb__header {
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+  }
+}
+
 .thumb__title {
   font-size: 18px;
   font-weight: 400;
+}
+
+@media screen and (max-width: 768px) {
+  .thumb__title {
+    width: 100%;
+  }
 }
 
 .thumb__time {
@@ -303,15 +354,35 @@ input:focus-visible {
   padding-top: 20px;
 }
 
+@media screen and (max-width: 768px) {
+  .thumb__content {
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+  }
+}
+
 .thumb__ingredients-list {
   width: 50% !important;
   list-style: none;
   font-size: 12px;
 }
 
+@media screen and (max-width: 768px) {
+  .thumb__ingredients-list {
+    width: 100%;
+  }
+}
+
 .thumb__description {
   width: 50%;
   font-size: 12px;
+}
+
+@media screen and (max-width: 768px) {
+  .thumb__description {
+    width: 100%;
+    padding-top: 20px;
+  }
 }
 
 /*@import "./pages/about";
