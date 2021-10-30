@@ -15,12 +15,12 @@ body {
   max-width: 1440px;
 }
 
-header, main {
+header, section {
   padding: 0 100px;
 }
 
 @media screen and (max-width: 540px) {
-  header, main {
+  header, section {
     padding: 0 5%;
   }
 }
@@ -212,6 +212,11 @@ input:focus-visible {
   opacity: 0.5;
 }
 
+.filter__icon {
+  /* a sup */
+  color: white;
+}
+
 .filter__items-list {
   list-style: none;
   display: -webkit-box;
@@ -230,5 +235,85 @@ input:focus-visible {
   padding-right: 20px;
 }
 
+/* Receipe thumbs */
+.receipes-container {
+  margin-top: 25px;
+  padding-right: 50px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.thumb {
+  width: 380px;
+  height: 364px;
+  margin-right: 50px;
+  margin-bottom: 50px;
+  border-radius: 5px;
+}
+
+.thumb__picture-container {
+  width: 100%;
+  height: 178px;
+  background-color: #C7BEBE;
+  border-radius: 5px 5px 0 0;
+}
+
+.thumb__details {
+  padding: 20px;
+  width: 100%;
+  height: calc(364px - 178px);
+  background-color: #E7E7E7;
+  border-radius: 0 0 5px 5px;
+}
+
+.thumb__header {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: baseline;
+      -ms-flex-align: baseline;
+          align-items: baseline;
+}
+
+.thumb__title {
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.thumb__time {
+  font-weight: 700;
+}
+
+.thumb__clock-icon {
+  padding-right: 7px;
+}
+
+.thumb__content {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding-top: 20px;
+}
+
+.thumb__ingredients-list {
+  width: 50% !important;
+  list-style: none;
+  font-size: 12px;
+}
+
+.thumb__description {
+  width: 50%;
+  font-size: 12px;
+}
+
 /*@import "./pages/about";
 @import "./pages/project";*/
+/*# sourceMappingURL=main.css.map */

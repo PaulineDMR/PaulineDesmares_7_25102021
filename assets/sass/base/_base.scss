@@ -12,7 +12,7 @@ body {
     max-width: $body-maxwidth;
 }
 
-header, main {
+header, section {
     padding: 0 100px;
     @include media-size(mobile) {
         padding: 0 5%;
