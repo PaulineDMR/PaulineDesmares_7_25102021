@@ -11,8 +11,6 @@
         display: none;
     }
     &__input {
-        border: none;
-        background-color: inherit;
         flex-grow: 1;
         margin: 23px 0;
         font-size: 18px;
@@ -26,9 +24,6 @@
         &::placeholder {
             opacity: 0.25;
         }
-        &:focus-visible {
-            outline: none;
-        }
     }
     &__icon {
         font-size: 32px;
@@ -40,13 +35,13 @@
     margin-top: 25px;
 }
 
-.items-list {
+.items-selected__list {
     list-style: none;
     display: flex;
     flex-wrap: wrap;
 }
 
-.item {
+.item-selected {
     padding: 10px 20px;
     margin-right: 20px;
     margin-bottom: 15px;
@@ -70,5 +65,62 @@
     }
     &__icon {
         font-size: 20px;
+    }
+}
+
+/* Filters buttons */
+.dropdown {
+    margin-top: 15px;
+    display: flex;
+}
+
+.filter {
+    margin-right: 20px;
+    color: white;
+    border-radius: 5px;
+    padding: 23px 0 23px 20px;
+    &--1 {
+        background-color: $filter1-color;
+    }
+    &--2 {
+        background-color: $filter2-color;
+    }
+    &--3 {
+        background-color: $filter3-color;
+    }
+    &__btn {
+        display: flex;
+    }
+    &__label {
+        display: none;
+    }
+    &__input {
+        font-size: 18px;
+        font-weight: bold;
+        width: auto;
+        display: block;
+        text-align: start;
+        appearance: auto;
+        color: white;
+        &::placeholder {
+            color: white;
+            opacity: 0.5;
+        }
+    }
+    &__icon {
+
+    }
+    &__items-list {
+        list-style: none;
+        display: flex;
+        flex-wrap: wrap;
+        padding-bottom: 5px;
+        padding-top: 25px;
+        width: auto;
+    }
+    &__item {
+        width: 33.33%;
+        font-size: 18px;
+        padding-right: 20px;
     }
 }

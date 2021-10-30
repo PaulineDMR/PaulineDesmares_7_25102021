@@ -18,3 +18,11 @@ header, main {
         padding: 0 5%;
     }
 }
+
+input {
+    border: none;
+    background-color: inherit;
+    &:focus-visible {
+        outline: none;
+    }
+}
