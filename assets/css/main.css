@@ -227,6 +227,7 @@ input:focus-visible {
   padding-bottom: 5px;
   padding-top: 25px;
   width: auto;
+  display: none;
 }
 
 .filter__item {
