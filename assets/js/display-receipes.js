@@ -62,6 +62,23 @@ function createReceipeHtmlBlock(receipeName, receipeTime, receipeDescription, re
     thumbContent.append(thumbDescription);
 }
 
+function createIngredientsHtmlBlock(Ingredient, quantity, unit) {
+    quantity === undefined ? let ingredientQuantity = "" : 0;
+    let thumbIngredient = createElement("li", "thumb__igredient");
+            if(ingredient.unit === undefined) {
+                thumbIngredient.innerHTML = "<strong>" + ingredient.ingredient + ":</strong> " + ingredient.quantity;
+            } else {
+                thumbIngredient.innerHTML = "<strong>" + ingredient.ingredient + ":</strong> " + ingredient.quantity + ingredient.unit;
+            }
+}
+
+let thumbIngredient = createElement("li", "thumb__igredient");
+            if(ingredient.unit === undefined) {
+                thumbIngredient.innerHTML = "<strong>" + ingredient.ingredient + ":</strong> " + ingredient.quantity;
+            } else {
+                thumbIngredient.innerHTML = "<strong>" + ingredient.ingredient + ":</strong> " + ingredient.quantity + ingredient.unit;
+            }
+
 
 function displayAllReceipes() {
     getReceipesDetails()
