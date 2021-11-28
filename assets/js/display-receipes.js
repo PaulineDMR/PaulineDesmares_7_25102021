@@ -1,6 +1,6 @@
 console.log(recipes[0].id);
 
-function getReceipesDetails() {
+function displayAllReceipes() {
     for (let receipe of recipes) {
         let receipeName = receipe.name;
         let receipeDescription = receipe.description;
@@ -8,17 +8,7 @@ function getReceipesDetails() {
         let receipeId = receipe.id;
         createReceipeHtmlBlock(receipeName, receipeTime, receipeDescription, receipeId);
         for (let ingredient of receipe.ingredients) {
-            let thumbIngredient = createElement("li", "thumb__igredient");
-            if(ingredient.unit === undefined) {
-                thumbIngredient.innerHTML = "<strong>" + ingredient.ingredient + ":</strong> " + ingredient.quantity;
-            } else {
-                thumbIngredient.innerHTML = "<strong>" + ingredient.ingredient + ":</strong> " + ingredient.quantity + ingredient.unit;
-            }
-            
-            document.querySelector("ul.receipe-" + receipeId).append(thumbIngredient);
-            /*for(let detail of ingredient) {
-                /*<li class="thumb__ingredient">Lait de coco</li><li class="thumb__ingredient">Lait de coco</li><li class="thumb__ingredient">Lait de coco</li><li class="thumb__ingredient">Lait de coco</li><li class="thumb__ingredient">Lait de coco</li>
-            }  */
+            createIngredientsHtmlBlock(ingredient.ingredient, ingredient.quantity, ingredient.unit, receipeId);
         }
     }
 }
@@ -28,11 +18,6 @@ function createElement(htmlTag, className) {
     elt.classList.add(className);
     return elt;
 }
-
-/*function createAndInsertElement(htmlTag, className, parentElt) {
-    let elt = createElement(htmlTag, className);
-    parentElt.append(elt);
-}*/
 
 function createReceipeHtmlBlock(receipeName, receipeTime, receipeDescription, receipeId) {
     let receipesContainer = document.querySelector("section.receipes-container");
@@ -62,27 +47,33 @@ function createReceipeHtmlBlock(receipeName, receipeTime, receipeDescription, re
     thumbContent.append(thumbDescription);
 }
 
-function createIngredientsHtmlBlock(Ingredient, quantity, unit) {
-    quantity === undefined ? let ingredientQuantity = "" : 0;
+function createIngredientsHtmlBlock(ingredient, quantity, unit, receipeId) {
     let thumbIngredient = createElement("li", "thumb__igredient");
-            if(ingredient.unit === undefined) {
-                thumbIngredient.innerHTML = "<strong>" + ingredient.ingredient + ":</strong> " + ingredient.quantity;
-            } else {
-                thumbIngredient.innerHTML = "<strong>" + ingredient.ingredient + ":</strong> " + ingredient.quantity + ingredient.unit;
-            }
+        if(quantity === undefined) {
+            thumbIngredient.innerHTML = "<strong>" + ingredient;
+        } else if (quantity != undefined && unit === undefined){
+            thumbIngredient.innerHTML = "<strong>" + ingredient + ":</strong> " + quantity;
+        } else {
+            unit = rewriteUnit(unit);
+            thumbIngredient.innerHTML = "<strong>" + ingredient + ":</strong> " + quantity + unit;
+        }
+    document.querySelector("ul.receipe-" + receipeId).append(thumbIngredient);
 }
 
-let thumbIngredient = createElement("li", "thumb__igredient");
-            if(ingredient.unit === undefined) {
-                thumbIngredient.innerHTML = "<strong>" + ingredient.ingredient + ":</strong> " + ingredient.quantity;
-            } else {
-                thumbIngredient.innerHTML = "<strong>" + ingredient.ingredient + ":</strong> " + ingredient.quantity + ingredient.unit;
-            }
-
-
-function displayAllReceipes() {
-    getReceipesDetails()
+function rewriteUnit(unit) {
+    switch(unit) {
+        case "grammes":
+          unit = "g";
+          break;
+        case "cuillères à soupe":
+          unit = " cuillères"
+          break;
+        default:
+          unit;
+      }
+    return unit;
 }
+
 
 displayAllReceipes();
 

@@ -200,6 +200,8 @@
         width: 100%;
         display: flex;
         padding-top: 20px;
+        height: 124px;
+        overflow: hidden;
         @include media-size(large-mobile) {
             flex-wrap: wrap;
         }
@@ -215,6 +217,8 @@
     &__description {
         width: 50%;
         font-size: 12px;
+        overflow: hidden;
+        text-overflow: ellipsis;
         @include media-size(large-mobile) {
             width: 100%;
             padding-top: 20px;

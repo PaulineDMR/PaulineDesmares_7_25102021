@@ -353,6 +353,8 @@ input:focus-visible {
   display: -ms-flexbox;
   display: flex;
   padding-top: 20px;
+  height: 124px;
+  overflow: hidden;
 }
 
 @media screen and (max-width: 768px) {
@@ -377,6 +379,8 @@ input:focus-visible {
 .thumb__description {
   width: 50%;
   font-size: 12px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 @media screen and (max-width: 768px) {
