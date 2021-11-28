@@ -1,4 +1,5 @@
-console.log(recipes[0].id);
+let searchStatus = "No search";
+//"No search", "No receipe found or "x receipe found"
 
 function displayAllReceipes() {
     for (let receipe of recipes) {

@@ -90,11 +90,13 @@
     }
     &__btn {
         display: flex;
+        align-items: center;
     }
     &__label {
         display: none;
     }
     &__input {
+        width: 150px!important;
         font-size: 18px;
         font-weight: bold;
         width: auto;
@@ -108,8 +110,7 @@
         }
     }
     &__icon {
-        /* a sup */
-        color:white;
+        padding-right: 20px;
     }
     &__items-list {
         list-style: none;
