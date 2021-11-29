@@ -1,8 +1,4 @@
-let filterIngredientsList = [];
-let filterAppliancesList = [];
-let filterUtensilsList = [];
 
-let filteredReceipes = [];
 
 
 function filterReceipesFromTag() {
@@ -52,13 +48,13 @@ function displayFiltersList(element) {
 }
 
 // Create and append html filters list
+
 function createAndAppendHtmlBlock(className, itemName) {
     const ul = document.querySelector("ul." + className);
     createFilterItemHtmlBlock(itemName, ul);
     ul.style.display = "flex";
 }
 
-// Create Filter html list
 function createFilterItemHtmlBlock(itemName, ul) {
     let item = document.createElement("p");
     item.innerHTML = itemName;
@@ -90,27 +86,6 @@ function generateFiltersListFromReceipesList(receipesList) {
     }
 }
 
-// TO DO
-/*function determinateReceipesList() {
-    switch(searchStatus) {
-        case "No search":
-          unit = "g";
-          break;
-        case "cuillères à soupe":
-          unit = " cuillères"
-          break;
-        default:
-          unit;
-      }
-    //is there receipes already filtered Yes / No
-    // YES : get the lists of filters from it
-    //NO : get the lists of filters from all the receipes
-    // List of "Ingrédients"
-    // List of 'Appareils"
-    // List of "Ustensiles"
- 
-}*/
-
-generateFiltersListFromReceipesList(recipes);
+generateFiltersListFromReceipesList(determinateReceipesList());
 
 onClickFilterBtn();

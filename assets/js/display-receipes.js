@@ -1,8 +1,7 @@
-let searchStatus = "No search";
-//"No search", "No receipe found or "x receipe found"
 
-function displayAllReceipes() {
-    for (let receipe of recipes) {
+
+function displayReceipes(receipesList) {
+    for (let receipe of receipesList) {
         let receipeName = receipe.name;
         let receipeDescription = receipe.description;
         let receipeTime = receipe.time;
@@ -75,8 +74,7 @@ function rewriteUnit(unit) {
     return unit;
 }
 
-
-displayAllReceipes();
+displayReceipes(determinateReceipesList());
 
 
 
