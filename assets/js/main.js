@@ -5,7 +5,7 @@ let filterAppliancesList = [];
 let filterUtensilsList = [];
 
 let filteredReceipesId = [];
-let newReceipesList = [];
+let newReceipesList = []; // mise à jour quand user tag input
 
 // Déterminate wich receipes list to use
 function determinateReceipesList() {

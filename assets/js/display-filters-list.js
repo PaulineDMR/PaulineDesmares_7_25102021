@@ -1,33 +1,16 @@
 
-
-
-function filterReceipesFromTag() {
-    // get input value
-
-    // is there receipes already filtered ?
-    // search status = "No search" -> compare input value to all receipes
-    // search status = "x receipes found" -> compare input value to the list of already filtered receipes
-
-    //get an updated filtered receipes list
-    //display the receipes
-    // Update the list of filters
-
-    // search status = "No receipe found" -> Nothing to do / no filters displayed
-    
-}
-
 // On click filters btn
 function onClickFilterBtn() {
     let btnList = document.querySelectorAll("i.filter__icon");
-    for (let element of btnList) {
-        element.addEventListener("click", function(e) {
-            displayFiltersList(e.target);
+    for (let elt of btnList) {
+        elt.addEventListener("click", function(e) {
+            let filter = e.target.dataset.filterName;
+            displayFiltersList(filter);
         });
     }
 }
 
-function displayFiltersList(element) {
-    let filterName = element.dataset.filterName;
+function displayFiltersList(filterName) {
     switch (filterName) {
         case "filter-ingredients" :
             for (let item of filterIngredientsList) {  
@@ -64,7 +47,38 @@ function createFilterItemHtmlBlock(itemName, ul) {
     ul.append(li);
 }
 
-// Get 3 filters list from receipes
+// Get 3 filters list from receipes list
+function generateIngredientsListFromReceipesList(receipesList) {
+    filterIngredientsList = [];
+    for (let receipe of receipesList) {
+        for (let ingredient of receipe.ingredients) {
+            if (!filterIngredientsList.includes(ingredient.ingredient)) {
+                filterIngredientsList.push(ingredient.ingredient);                
+            }
+        }
+    }
+}
+
+function generateAppliancesListFromReceipesList(receipesList) {
+    filterAppliancesList = [];
+    for (let receipe of receipesList) {
+        if (!filterAppliancesList.includes(receipe.appliance)) {
+            filterAppliancesList.push(receipe.appliance);            
+        }
+    }
+}
+
+function generateUtensilsListFromReceipesList(receipesList) {
+    filterUtensilsList = [];
+    for (let receipe of receipesList) {
+        for (let utensil of receipe.ustensils) {
+            if (!filterUtensilsList.includes(utensil)) {
+                filterUtensilsList.push(utensil);
+            }
+        }
+    }
+}
+
 function generateFiltersListFromReceipesList(receipesList) {
     filterIngredientsList = [];
     filterAppliancesList = [];
