@@ -22,87 +22,76 @@ function filterReceipesFromTag() {
 
 // On click filters btn
 function onClickFilterBtn() {
-    let btnList = document.querySelectorAll("div.filter");
-    console.log(btnList);
+    let btnList = document.querySelectorAll("i.filter__icon");
     for (let element of btnList) {
         element.addEventListener("click", function(e) {
-            console.log(e.target);
+            displayFiltersList(e.target);
         });
-    };
+    }
 }
 
 function displayFiltersList(element) {
-    for (let name of element.classList) {
-        switch (name) {
-            case "filter-ingredient" :
-                for (let item of filterIngredientsList) {    
-                    createFilterItemHtmlBlock(name);
-                }
-                break;
-            case "filter-appareils" :
-                for (let item of filterAppliancesList) {    
-                    createFilterItemHtmlBlock(name);
-                }
-                break;
-            case "filter-ustensiles" :
-                for (let item of filterUtensilsList) {    
-                    createFilterItemHtmlBlock(name, item);
-                }
-                break;
-        } 
+    let filterName = element.dataset.filterName;
+    switch (filterName) {
+        case "filter-ingredients" :
+            for (let item of filterIngredientsList) {  
+                createAndAppendHtmlBlock(filterName, item);
+            }
+            break;
+        case "filter-appareils" :
+            for (let item of filterAppliancesList) {    
+                createAndAppendHtmlBlock(filterName, item);
+            }
+            break;
+        case "filter-ustensiles" :
+            for (let item of filterUtensilsList) {  
+                createAndAppendHtmlBlock(filterName, item);
+            }
+            break;
     }
-    
-    //afficher la liste des filtres possibles
-    // List of "Ingrédients"
-    // List of 'Appareils"
-    // List of "Ustensiles"
 }
 
-// Create Filter html block
-function createFilterItemHtmlBlock(className, itemName) {
+// Create and append html filters list
+function createAndAppendHtmlBlock(className, itemName) {
+    const ul = document.querySelector("ul." + className);
+    createFilterItemHtmlBlock(itemName, ul);
+    ul.style.display = "flex";
+}
+
+// Create Filter html list
+function createFilterItemHtmlBlock(itemName, ul) {
     let item = document.createElement("p");
     item.innerHTML = itemName;
-    let li = document.createElement("li").classList.add("filter-items-list");
+    let li = document.createElement("li");
+    li.classList.add("filter__item");
     li.append(item);
-    document.querySelector("div." + className).childNodes[1].append(li);
+    ul.append(li);
 }
 
 // Get 3 filters list from receipes
 function generateFiltersListFromReceipesList(receipesList) {
     filterIngredientsList = [];
-    filterApplianceList = [];
+    filterAppliancesList = [];
     filterUtensilsList = [];
     for (let receipe of receipesList) {
-        filterApplianceList.push(receipe.appliance);
+        if (!filterAppliancesList.includes(receipe.appliance)) {
+            filterAppliancesList.push(receipe.appliance);            
+        }
         for (let utensil of receipe.ustensils) {
-            filterUtensilsList.push(utensil);
+            if (!filterUtensilsList.includes(utensil)) {
+                filterUtensilsList.push(utensil);
+            }
         }
         for (let ingredient of receipe.ingredients) {
-            filterIngredientsList.push(ingredient.ingredient);
+            if (!filterIngredientsList.includes(ingredient.ingredient)) {
+                filterIngredientsList.push(ingredient.ingredient);                
+            }
         } 
     }
 }
 
-// Get Appliance filters list or Utensils filters list
-function getFiltersListFromReceipesList(receipesList, filterName, filterNameList) {
-    filterNameList = [];
-    for(let receipe of receipesList) {
-        filterName = receipe.filterName
-        filterNameList.push(receipe.filterName);
-    }
-}
-
-// Get Ingredients filters list or Utensils filters list
-function getIngredientsListFromReceipesList(receipesList) {
-    filterIngredientsList = [];
-    for(let receipe of receipesList) {
-        for(let ingredient of receipesList.ingredients) {
-            filterIngredientsList.push(ingredient);
-        }
-    }
-}
-
-function determinateReceipesList() {
+// TO DO
+/*function determinateReceipesList() {
     switch(searchStatus) {
         case "No search":
           unit = "g";
@@ -120,6 +109,8 @@ function determinateReceipesList() {
     // List of 'Appareils"
     // List of "Ustensiles"
  
-}
+}*/
+
+generateFiltersListFromReceipesList(recipes);
 
 onClickFilterBtn();

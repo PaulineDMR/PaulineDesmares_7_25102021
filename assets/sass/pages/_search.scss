@@ -90,6 +90,7 @@
     }
     &__btn {
         display: flex;
+        justify-content: space-between;
         align-items: center;
     }
     &__label {
@@ -125,6 +126,8 @@
         width: 33.33%;
         font-size: 18px;
         padding-right: 20px;
+        line-height: 1.8em;
+        font-weight: 400;
     }
 }
 
