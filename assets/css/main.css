@@ -141,6 +141,7 @@ input:focus-visible {
 
 .item-selected__icon {
   font-size: 20px;
+  cursor: pointer;
 }
 
 /* Filters buttons */
@@ -221,6 +222,7 @@ input:focus-visible {
 
 .filter__icon {
   padding-right: 20px;
+  cursor: pointer;
 }
 
 .filter__items-list {
@@ -242,6 +244,11 @@ input:focus-visible {
   padding-right: 20px;
   line-height: 1.8em;
   font-weight: 400;
+  cursor: pointer;
+}
+
+.filter__item:hover {
+  text-decoration: underline;
 }
 
 /* Receipe thumbs */
@@ -400,3 +407,4 @@ input:focus-visible {
 
 /*@import "./pages/about";
 @import "./pages/project";*/
+/*# sourceMappingURL=main.css.map */

@@ -65,6 +65,7 @@
     }
     &__icon {
         font-size: 20px;
+        cursor: pointer;
     }
 }
 
@@ -112,6 +113,7 @@
     }
     &__icon {
         padding-right: 20px;
+        cursor: pointer;
     }
     &__items-list {
         list-style: none;
@@ -128,7 +130,12 @@
         padding-right: 20px;
         line-height: 1.8em;
         font-weight: 400;
+        cursor: pointer;
+        &:hover {
+            text-decoration: underline;
+        }
     }
+
 }
 
 /* Receipe thumbs */
