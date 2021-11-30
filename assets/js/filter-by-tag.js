@@ -4,16 +4,20 @@ function updateFiltersList(inputElt, keyPressed) {
     filterAppliancesList = [];
     filterUtensilsList = [];
     //si key vide l'enlever sinon le rajouter
-    let inputValue = inputElt.value + keyPressed;
-    inputValue = inputValue.toLowerCase();
+    let inputValue = determinateInputValue(inputElt, keyPressed);
+    console.log(inputValue);
     let filterName = getFilterName(inputElt);
     compareInputToReceipeslist(determinateReceipesList(), filterName, inputValue);
     removeActualHtmlList();
     displayFiltersList(filterName);  
 }
 
-function getInputValue(inputElt) {
-    return inputElt.value;
+function determinateInputValue(inputElt, keyPressed) {
+    if(keyPressed === "Backspace") {
+        return  inputElt.value.substring(0, inputElt.value.length - 1);
+    } else {
+        return inputElt.value + keyPressed;
+    }
 }
 
 function getFilterName(inputElt) {
@@ -40,25 +44,23 @@ function compareInputToReceipeslist(receipesList, filterName, inputValue) {
         case "filter-ustensiles" :
             compareUtensilInputToFiltersList(receipesList, inputValue);
             break;
-    }     
+    }
 }
 
 function compareIngredientInputToFiltersList(receipesList, inputValue) {
     filterIngredientsList = [];
     for (let receipe of receipesList) {
         for (let ingredient of receipe.ingredients) {
-            let ingredientName = ingredient.ingredient;
-            ingredientName = ingredientName.toLowerCase();
-            console.log(ingredientName);
-            if(ingredientName.includes(inputValue)) {
-                console.log(ingredientName.includes(inputValue));
-                if (!filterIngredientsList.includes(ingredientName)) {
-                    filterIngredientsList.push(ingredientName);                
+            let ingredientName = ingredient.ingredient.toLowerCase();
+            if(ingredientName.includes(inputValue.toLowerCase())) {
+                if (!filterIngredientsList.includes(ingredient.ingredient)) {
+                    filterIngredientsList.push(ingredient.ingredient);                
                 }
                 newReceipesList.push(receipe);
             }
         }
     }
+    filterIngredientsList.sort();
     generateAppliancesListFromReceipesList(newReceipesList);
     generateUtensilsListFromReceipesList(newReceipesList);
 }
@@ -67,13 +69,14 @@ function compareApplianceInputToFiltersList(receipesList, inputValue) {
     filterAppliancesList = [];
     for (let receipe of receipesList) {
         let applianceName = receipe.appliance.toLowerCase();
-            if(applianceName.includes(inputValue)) {
-                if (!filterAppliancesList.includes(applianceName)) {
-                    filterAppliancesList.push(applianceName);                
+            if(applianceName.includes(inputValue.toLowerCase())) {
+                if (!filterAppliancesList.includes(receipe.appliance)) {
+                    filterAppliancesList.push(receipe.appliance);                
                 }
                 newReceipesList.push(receipe);
             }
         }
+    filterAppliancesList.sort();
     generateIngredientsListFromReceipesList(newReceipesList);
     generateUtensilsListFromReceipesList(newReceipesList);
 }
@@ -83,24 +86,23 @@ function compareUtensilInputToFiltersList(receipesList, inputValue) {
     for (let receipe of receipesList) {
         for (let utensil of receipe.ustensils) {
             let utensilName = utensil.toLowerCase();
-            if(utensilName.includes(inputValue)) {
-                if (!filterUtensilsList.includes(utensilName)) {
-                    filterUtensilsList.push(utensilName);                
+            if(utensilName.includes(inputValue.toLowerCase())) {
+                if (!filterUtensilsList.includes(utensil)) {
+                    filterUtensilsList.push(utensil);                
                 }
                 newReceipesList.push(receipe);
             }
         }
     }
+    filterUtensilsList.sort();
     generateIngredientsListFromReceipesList(newReceipesList);
     generateAppliancesListFromReceipesList(newReceipesList);
 }
 
 function removeActualHtmlList() {
     let uls = document.querySelectorAll("ul.filter__items-list");
-    console.log(uls);
     for (let ul of uls) {
         ul.innerHTML = "";
-        console.log(ul);
     }
 }
 

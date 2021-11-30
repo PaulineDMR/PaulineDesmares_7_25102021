@@ -57,6 +57,7 @@ function generateIngredientsListFromReceipesList(receipesList) {
             }
         }
     }
+    filterIngredientsList.sort();
 }
 
 function generateAppliancesListFromReceipesList(receipesList) {
@@ -66,6 +67,7 @@ function generateAppliancesListFromReceipesList(receipesList) {
             filterAppliancesList.push(receipe.appliance);            
         }
     }
+    filterAppliancesList.sort();
 }
 
 function generateUtensilsListFromReceipesList(receipesList) {
@@ -77,9 +79,10 @@ function generateUtensilsListFromReceipesList(receipesList) {
             }
         }
     }
+    filterUtensilsList.sort();
 }
 
-function generateFiltersListFromReceipesList(receipesList) {
+/*function generateFiltersListFromReceipesList(receipesList) {
     filterIngredientsList = [];
     filterAppliancesList = [];
     filterUtensilsList = [];
@@ -98,7 +101,7 @@ function generateFiltersListFromReceipesList(receipesList) {
             }
         } 
     }
-}
+}*/
 
 generateIngredientsListFromReceipesList(determinateReceipesList());
 generateAppliancesListFromReceipesList(determinateReceipesList());
