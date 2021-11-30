@@ -100,6 +100,8 @@ function generateFiltersListFromReceipesList(receipesList) {
     }
 }
 
-generateFiltersListFromReceipesList(determinateReceipesList());
+generateIngredientsListFromReceipesList(determinateReceipesList());
+generateAppliancesListFromReceipesList(determinateReceipesList());
+generateUtensilsListFromReceipesList(determinateReceipesList());
 
 onClickFilterBtn();
