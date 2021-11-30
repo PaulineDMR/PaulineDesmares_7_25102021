@@ -3,9 +3,7 @@ function updateFiltersList(inputElt, keyPressed) {
     filterIngredientsList = [];
     filterAppliancesList = [];
     filterUtensilsList = [];
-    //si key vide l'enlever sinon le rajouter
     let inputValue = determinateInputValue(inputElt, keyPressed);
-    console.log(inputValue);
     let filterName = getFilterName(inputElt);
     compareInputToReceipeslist(determinateReceipesList(), filterName, inputValue);
     removeActualHtmlList();
@@ -117,7 +115,7 @@ function userInputValue() {
     }
 }
 
-userInputValue();
+
 
 
 

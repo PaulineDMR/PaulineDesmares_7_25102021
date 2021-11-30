@@ -81,30 +81,3 @@ function generateUtensilsListFromReceipesList(receipesList) {
     }
     filterUtensilsList.sort();
 }
-
-/*function generateFiltersListFromReceipesList(receipesList) {
-    filterIngredientsList = [];
-    filterAppliancesList = [];
-    filterUtensilsList = [];
-    for (let receipe of receipesList) {
-        if (!filterAppliancesList.includes(receipe.appliance)) {
-            filterAppliancesList.push(receipe.appliance);            
-        }
-        for (let utensil of receipe.ustensils) {
-            if (!filterUtensilsList.includes(utensil)) {
-                filterUtensilsList.push(utensil);
-            }
-        }
-        for (let ingredient of receipe.ingredients) {
-            if (!filterIngredientsList.includes(ingredient.ingredient)) {
-                filterIngredientsList.push(ingredient.ingredient);                
-            }
-        } 
-    }
-}*/
-
-generateIngredientsListFromReceipesList(determinateReceipesList());
-generateAppliancesListFromReceipesList(determinateReceipesList());
-generateUtensilsListFromReceipesList(determinateReceipesList());
-
-onClickFilterBtn();

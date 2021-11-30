@@ -26,3 +26,4 @@ function determinateReceipesList() {
             return newReceipesList;
     }
 }
+
