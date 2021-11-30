@@ -74,7 +74,7 @@ function rewriteUnit(unit) {
     return unit;
 }
 
-
+displayReceipes(determinateReceipesList());
 
 
 

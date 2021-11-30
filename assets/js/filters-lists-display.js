@@ -1,14 +1,5 @@
 
-// On click filters btn
-function onClickFilterBtn() {
-    let btnList = document.querySelectorAll("i.filter__icon");
-    for (let elt of btnList) {
-        elt.addEventListener("click", function(e) {
-            let filter = e.target.dataset.filterName;
-            displayFiltersList(filter);
-        });
-    }
-}
+
 
 function displayFiltersList(filterName) {
     switch (filterName) {
@@ -40,6 +31,7 @@ function createAndAppendHtmlBlock(className, itemName) {
 
 function createFilterItemHtmlBlock(itemName, ul) {
     let item = document.createElement("p");
+    item.classList.add("filter__item-name")
     item.innerHTML = itemName;
     let li = document.createElement("li");
     li.classList.add("filter__item");
@@ -81,3 +73,8 @@ function generateUtensilsListFromReceipesList(receipesList) {
     }
     filterUtensilsList.sort();
 }
+
+
+generateIngredientsListFromReceipesList(determinateReceipesList());
+generateAppliancesListFromReceipesList(determinateReceipesList());
+generateUtensilsListFromReceipesList(determinateReceipesList());
