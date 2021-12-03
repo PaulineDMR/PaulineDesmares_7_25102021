@@ -1,6 +1,7 @@
 
 
 function displayReceipes(receipesList) {
+    removeThumb();
     for (let receipe of receipesList) {
         let receipeName = receipe.name;
         let receipeDescription = receipe.description;
@@ -49,8 +50,8 @@ function createReceipeHtmlBlock(receipeName, receipeTime, receipeDescription, re
 
 function createIngredientsHtmlBlock(ingredient, quantity, unit, receipeId) {
     let thumbIngredient = createElement("li", "thumb__igredient");
-        if(quantity === undefined) {
-            thumbIngredient.innerHTML = "<strong>" + ingredient;
+        if (quantity === undefined) {
+            thumbIngredient.innerHTML = "<strong>" + ingredient + "</strong>";
         } else if (quantity != undefined && unit === undefined){
             thumbIngredient.innerHTML = "<strong>" + ingredient + ":</strong> " + quantity;
         } else {
@@ -72,6 +73,12 @@ function rewriteUnit(unit) {
           unit;
       }
     return unit;
+}
+
+// Remove receipe thumb from page
+function removeThumb() {
+    let thumbs = document.querySelectorAll("div.thumb");
+    thumbs.forEach(thumb => thumb.remove());
 }
 
 displayReceipes(determinateReceipesList());

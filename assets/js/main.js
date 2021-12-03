@@ -1,3 +1,4 @@
+//change when a search is launched
 let searchStatus = "No search"; //"No search", "No receipe found or "Receipes found"
 
 let filterIngredientsList = [];
@@ -15,15 +16,19 @@ function determinateReceipesList() {
         default:
             return recipes;
         case "Receipes found":
-            newReceipesList = [];
-            for (let id of filteredReceipesId) {
-                for (let receipe of recipes) {
-                    if (id === receipe.id) {
-                        newReceipesList.push[receipe];
-                    }
-                }
-            }
-            return newReceipesList;
+            generateNewReceipesList();
     }
+}
+
+function generateNewReceipesList() {
+    newReceipesList = [];
+    for (let id of filteredReceipesId) {
+        for (let receipe of recipes) {
+            if (id === receipe.id) {
+                newReceipesList.push(receipe);
+            }
+        }
+    }
+    return newReceipesList; 
 }
 

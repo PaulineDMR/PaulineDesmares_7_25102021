@@ -1,6 +1,4 @@
 
-
-
 function displayFiltersList(filterName) {
     switch (filterName) {
         case "filter-ingredients" :
@@ -40,6 +38,12 @@ function createFilterItemHtmlBlock(itemName, ul) {
 }
 
 // Get 3 filters list from receipes list
+function generateAllFiltersList(receipesList) {
+    generateIngredientsListFromReceipesList(receipesList);
+    generateAppliancesListFromReceipesList(receipesList);
+    generateUtensilsListFromReceipesList(receipesList);
+}
+
 function generateIngredientsListFromReceipesList(receipesList) {
     filterIngredientsList = [];
     for (let receipe of receipesList) {
@@ -74,7 +78,4 @@ function generateUtensilsListFromReceipesList(receipesList) {
     filterUtensilsList.sort();
 }
 
-
-generateIngredientsListFromReceipesList(determinateReceipesList());
-generateAppliancesListFromReceipesList(determinateReceipesList());
-generateUtensilsListFromReceipesList(determinateReceipesList());
+generateAllFiltersList(determinateReceipesList());
