@@ -5,12 +5,15 @@ function searchByTag(itemClicked, filterName, receipesList) {
     generateNewReceipesList();
     displayReceipes(newReceipesList);
     generateAllFiltersList(newReceipesList);
-    //close filters list
+    removeActualHtmlList();
+    createAndAppendAllFiltersList();
+    displayTag(itemName, filterName);
+    userClickOnItem();
+    //close filters list OU affiche liste en cours
+    //display filters List in html
     //Display a tag equal to the item clicked
-    console.log(filteredReceipesId);
-    console.log(newReceipesList);
     console.log(searchStatus);
-    console.log(determinateReceipesList());
+    console.log(newReceipesList);
 }
 
 //find receipes depends of filter type
@@ -31,7 +34,6 @@ function FindReceipeswithTag(filterName, filter, receipesList) {
 
 //Find receipes with ingredient tag
 function findReceipesWithIngredient(ingredientFilter, receipesList) {
-    console.log(receipesList);
     filteredReceipesId = [];
     for (let receipe of receipesList) {
         for (let ingredient of receipe.ingredients) {
@@ -86,6 +88,7 @@ function userClickOnItem() {
     let elts = document.querySelectorAll("p.filter__item-name");
     for (let elt of elts) {
         elt.addEventListener("click", function() {
+            console.log("click");
             let filterName = getFilterName(elt);
             let receipesList = determinateReceipesList();
             searchByTag(elt, filterName, receipesList);

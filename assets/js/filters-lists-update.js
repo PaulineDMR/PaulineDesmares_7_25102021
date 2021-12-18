@@ -97,25 +97,7 @@ function compareUtensilInputToFiltersList(receipesList, inputValue) {
     generateAppliancesListFromReceipesList(newReceipesList);
 }
 
-function removeActualHtmlList() {
-    let uls = document.querySelectorAll("ul.filter__items-list");
-    for (let ul of uls) {
-        ul.innerHTML = "";
-    }
-}
 
-// Event : User enter a value
-
-function userInputValue() {
-    let inputsElt = document.querySelectorAll("input.filter__input");
-    for (let elt of inputsElt) {
-        elt.addEventListener("keydown", function(e) {
-            updateFiltersList(elt, e.key);
-        });
-    }
-}
-
-userInputValue();
 
 
 

@@ -192,7 +192,7 @@ const recipes = [
                 "quantity": 1
             },
             {
-                "ingredient": "Pomme",
+                "ingredient": "Pomme(s)",
                 "quantity": 3
             },
             {
@@ -381,7 +381,7 @@ const recipes = [
                 "unit": "tranches"
             }, 
             {
-                "ingredient": "Pommes",
+                "ingredient": "Pomme(s)",
                 "quantity": 1
             },
             {
@@ -409,7 +409,7 @@ const recipes = [
                 "unit": "grammes"
             },
             {
-                "ingredient": "Pommes",
+                "ingredient": "Pomme(s)",
                 "quantity": 8
             },
             {
@@ -1342,7 +1342,7 @@ const recipes = [
         "servings": 40,
         "ingredients": [
             {
-                "ingredient": "Pomme",
+                "ingredient": "Pomme(s)",
                 "quantity": 2
             },
             {

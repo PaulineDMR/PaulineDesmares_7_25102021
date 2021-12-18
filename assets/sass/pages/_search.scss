@@ -123,6 +123,9 @@
         padding-top: 25px;
         width: auto;
         display: none;
+        &--visible {
+            display: flex;
+        }
     }
     &__item {
         width: 33.33%;

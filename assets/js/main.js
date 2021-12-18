@@ -16,7 +16,7 @@ function determinateReceipesList() {
         default:
             return recipes;
         case "Receipes found":
-            generateNewReceipesList();
+            return generateNewReceipesList();
     }
 }
 
@@ -29,6 +29,7 @@ function generateNewReceipesList() {
             }
         }
     }
+    console.log(newReceipesList);
     return newReceipesList; 
 }
 

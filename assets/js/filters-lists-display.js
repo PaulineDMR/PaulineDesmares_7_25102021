@@ -1,30 +1,48 @@
-
+// Display one list clicked
 function displayFiltersList(filterName) {
     switch (filterName) {
         case "filter-ingredients" :
-            for (let item of filterIngredientsList) {  
-                createAndAppendHtmlBlock(filterName, item);
-            }
+            displayUl(filterName);
             break;
         case "filter-appareils" :
-            for (let item of filterAppliancesList) {    
-                createAndAppendHtmlBlock(filterName, item);
-            }
+            displayUl(filterName);
             break;
         case "filter-ustensiles" :
-            for (let item of filterUtensilsList) {  
-                createAndAppendHtmlBlock(filterName, item);
-            }
+            displayUl(filterName);
             break;
     }
 }
 
 // Create and append html filters list
 
+// Create and append the 3 filters list
+function createAndAppendAllFiltersList() {
+    createAndAppendIngredientsList();
+    createAndAppendAppliancesList();
+    createAndAppendUtensilsList();
+}
+
+function createAndAppendIngredientsList() {
+    for (let item of filterIngredientsList) {  
+        createAndAppendHtmlBlock("filter-ingredients", item);
+    }
+}
+
+function createAndAppendAppliancesList() {
+    for (let item of filterAppliancesList) {  
+        createAndAppendHtmlBlock("filter-appareils", item);
+    }
+}
+
+function createAndAppendUtensilsList() {
+    for (let item of filterUtensilsList) {  
+        createAndAppendHtmlBlock("filter-ustensiles", item);
+    }
+}
+
 function createAndAppendHtmlBlock(className, itemName) {
     const ul = document.querySelector("ul." + className);
     createFilterItemHtmlBlock(itemName, ul);
-    ul.style.display = "flex";
 }
 
 function createFilterItemHtmlBlock(itemName, ul) {
@@ -36,6 +54,13 @@ function createFilterItemHtmlBlock(itemName, ul) {
     li.append(item);
     ul.append(li);
 }
+
+// Display ul.class-name elt
+function displayUl(className) {
+    const ul = document.querySelector("ul." + className);
+    ul.style.display = "flex";
+}
+
 
 // Get 3 filters list from receipes list
 function generateAllFiltersList(receipesList) {
@@ -77,5 +102,15 @@ function generateUtensilsListFromReceipesList(receipesList) {
     }
     filterUtensilsList.sort();
 }
+    
+
+// Remove a filters List from html
+function removeActualHtmlList() {
+    let uls = document.querySelectorAll("ul.filter__items-list");
+    for (let ul of uls) {
+        ul.innerHTML = "";
+    }
+}
 
 generateAllFiltersList(determinateReceipesList());
+createAndAppendAllFiltersList();

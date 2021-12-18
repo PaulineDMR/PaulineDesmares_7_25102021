@@ -5,8 +5,6 @@ function onClickFilterBtn() {
         elt.addEventListener("click", function(e) {
             let filter = e.target.dataset.filterName;
             displayFiltersList(filter);
-            
-    userClickOnItem();
         });
     }
 }
@@ -25,3 +23,24 @@ function userInputValue() {
 }
 
 userInputValue();
+
+//On click on a item from a list
+function userClickOnItem() {
+    let elts = document.querySelectorAll("p.filter__item-name");
+    for (let elt of elts) {
+        elt.addEventListener("click", function() {
+            console.log("click");
+            let filterName = getFilterName(elt);
+            console.log(elt);
+            console.log(filterName);
+            console.log(searchStatus);
+            let receipesList = [];
+            console.log(receipesList);
+            receipesList = determinateReceipesList();
+            console.log(receipesList);
+            searchByTag(elt, filterName, receipesList);
+        });
+    }
+}
+
+userClickOnItem();
