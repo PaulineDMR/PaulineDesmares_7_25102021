@@ -1,3 +1,5 @@
+sessionStorage.clear();
+
 // FUNCTIONS
 function searchByTag(itemClicked, filterName, receipesList) {
     let itemName = itemClicked.innerText;
@@ -9,11 +11,8 @@ function searchByTag(itemClicked, filterName, receipesList) {
     createAndAppendAllFiltersList();
     displayTag(itemName, filterName);
     userClickOnItem();
-    //close filters list OU affiche liste en cours
-    //display filters List in html
-    //Display a tag equal to the item clicked
-    console.log(searchStatus);
-    console.log(newReceipesList);
+    addTagNameToSession(itemName, filterName);
+    userClicksOnCross();
 }
 
 //find receipes depends of filter type
@@ -81,19 +80,12 @@ function getFilterName(itemClicked) {
     }   
 }
 
-// EVENTS
-
-//On click on a item from a list
-function userClickOnItem() {
-    let elts = document.querySelectorAll("p.filter__item-name");
-    for (let elt of elts) {
-        elt.addEventListener("click", function() {
-            console.log("click");
-            let filterName = getFilterName(elt);
-            let receipesList = determinateReceipesList();
-            searchByTag(elt, filterName, receipesList);
-        });
-    }
+// Add tag name to session storage
+function addTagNameToSession(tagName, typeOfFilter) {
+    let key = tagName;
+    let value = typeOfFilter;
+    sessionStorage.setItem(key, value);
+    console.log(sessionStorage.getItem(key));
 }
 
 
@@ -101,14 +93,11 @@ function userClickOnItem() {
 
 
 
-//On click on the close cross of the tag
-// -> Define which element it is
-//display receipes which correspond
-// -> update search status
-// Si il reste des tags "receipes found"
-// Si il n'y en a plus
-// Si il y a une recherche principal
-// -> update newreceipesList
-//Update filters list
-//Remove the tag
+
+
+
+
+
+
+
 

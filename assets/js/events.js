@@ -29,18 +29,28 @@ function userClickOnItem() {
     let elts = document.querySelectorAll("p.filter__item-name");
     for (let elt of elts) {
         elt.addEventListener("click", function() {
-            console.log("click");
             let filterName = getFilterName(elt);
-            console.log(elt);
-            console.log(filterName);
-            console.log(searchStatus);
             let receipesList = [];
-            console.log(receipesList);
             receipesList = determinateReceipesList();
-            console.log(receipesList);
             searchByTag(elt, filterName, receipesList);
         });
     }
 }
 
 userClickOnItem();
+
+// User clicks on the cross of the tag
+function userClicksOnCross() {
+    let elts = document.querySelectorAll("i.item-selected__icon");
+    for (let elt of elts) {
+        elt.addEventListener("click", function() {
+            let tag = elt.closest("li.item-selected");
+            let key = tag.firstElementChild.innerHTML;
+            sessionStorage.removeItem(key);
+            tag.remove();
+            // get tags from session
+            // and relaunch a search by tag for each tag
+        });
+    }
+}
+
