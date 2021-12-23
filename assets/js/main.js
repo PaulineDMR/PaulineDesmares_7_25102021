@@ -5,7 +5,8 @@ let filterIngredientsList = [];
 let filterAppliancesList = [];
 let filterUtensilsList = [];
 
-let filteredReceipesId = [];
+let filteredReceipesId = []; // filtered from main search
+let filteredReceipesIdFromTag = [];
 let newReceipesList = []; // mise à jour quand user tag input
 
 // Déterminate wich receipes list to use
@@ -20,16 +21,11 @@ function determinateReceipesList() {
     }
 }
 
-function generateNewReceipesList() {
-    newReceipesList = [];
-    for (let id of filteredReceipesId) {
-        for (let receipe of recipes) {
-            if (id === receipe.id) {
-                newReceipesList.push(receipe);
-            }
-        }
+function whichReceipesList() {
+    let tagList = document.querySelectorAll("li.item-selected");
+    if (tagList.length === 0) {
+        return determinateReceipesList();
+    } else {
+        return generateNewReceipesListFromTagSearch();
     }
-    console.log(newReceipesList);
-    return newReceipesList; 
 }
-

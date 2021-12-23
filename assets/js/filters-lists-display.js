@@ -112,5 +112,7 @@ function removeActualHtmlList() {
     }
 }
 
+
+
 generateAllFiltersList(determinateReceipesList());
 createAndAppendAllFiltersList();

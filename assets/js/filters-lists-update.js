@@ -1,32 +1,12 @@
     
-function updateFiltersList(inputElt, keyPressed) {
+function updateFiltersList(inputValue, filterName) {
     filterIngredientsList = [];
     filterAppliancesList = [];
     filterUtensilsList = [];
-    let inputValue = determinateInputValue(inputElt, keyPressed);
-    let filterName = getFilterName(inputElt);
-    compareInputToReceipeslist(determinateReceipesList(), filterName, inputValue);
+    let receipesListToCompare = whichReceipesList();
+    compareInputToReceipeslist(receipesListToCompare, filterName, inputValue);
     removeActualHtmlList();
     displayFiltersList(filterName);  
-}
-
-function determinateInputValue(inputElt, keyPressed) {
-    if(keyPressed === "Backspace") {
-        return  inputElt.value.substring(0, inputElt.value.length - 1);
-    } else {
-        return inputElt.value + keyPressed;
-    }
-}
-
-function getFilterName(inputElt) {
-    switch (inputElt.id) {
-        case "ingredients" :
-            return "filter-ingredients";
-        case "appareils" :
-            return "filter-appareils";
-        case "ustensiles" :
-            return "filter-ustensiles";
-    }
 }
 
 // Compare input to receipe
@@ -50,6 +30,7 @@ function compareIngredientInputToFiltersList(receipesList, inputValue) {
     for (let receipe of receipesList) {
         for (let ingredient of receipe.ingredients) {
             let ingredientName = ingredient.ingredient.toLowerCase();
+            console.log(ingredientName);
             if(ingredientName.includes(inputValue.toLowerCase())) {
                 if (!filterIngredientsList.includes(ingredient.ingredient)) {
                     filterIngredientsList.push(ingredient.ingredient);                
@@ -96,6 +77,30 @@ function compareUtensilInputToFiltersList(receipesList, inputValue) {
     generateIngredientsListFromReceipesList(newReceipesList);
     generateAppliancesListFromReceipesList(newReceipesList);
 }
+
+// Remove tag selected from filterList to display 
+function removeTagFromList(itemClicked, filterType) {
+    let tags = document.querySelectorAll("li.item-selected");
+    let index;
+    switch (filterType) {
+        case "ingredients" :
+            index = filterIngredientsList.indexOf(itemClicked);
+            filterIngredientsList.splice(index, 1);
+            break;
+        case "appliance" :
+            index = filterAppliancesList.indexOf(itemClicked);
+            filterAppliancesList.splice(index, 1);
+            break;
+        case "ustensils" :
+            index = filterUtensilsList.indexOf(itemClicked);
+            filterUtensilsList.splice(index, 1);
+            break;
+    }
+}
+
+filterIngredientsList = [];
+filterAppliancesList = [];
+filterUtensilsList = [];
 
 
 
