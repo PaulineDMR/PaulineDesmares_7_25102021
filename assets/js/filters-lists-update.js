@@ -1,5 +1,5 @@
     
-function updateFiltersList(inputValue, filterName) {
+/*function updateFiltersList(inputValue, filterName) {
     filterIngredientsList = [];
     filterAppliancesList = [];
     filterUtensilsList = [];
@@ -7,7 +7,7 @@ function updateFiltersList(inputValue, filterName) {
     compareInputToReceipeslist(receipesListToCompare, filterName, inputValue);
     removeActualHtmlList();
     displayFiltersList(filterName);  
-}
+}*/
 
 // Compare input to receipe
 function compareInputToReceipeslist(receipesList, filterName, inputValue) {
@@ -79,28 +79,25 @@ function compareUtensilInputToFiltersList(receipesList, inputValue) {
 }
 
 // Remove tag selected from filterList to display 
-function removeTagFromList(itemClicked, filterType) {
+function removeTagFromList() {
     let tags = document.querySelectorAll("li.item-selected");
-    let index;
-    switch (filterType) {
-        case "ingredients" :
-            index = filterIngredientsList.indexOf(itemClicked);
+    for (let tag of tags) {
+        let tagClasses = tag.className;
+        let tagName = tag.firstElementChild.innerText;
+        if (tagClasses.includes("item-selected--filter1")) {
+            index = filterIngredientsList.indexOf(tagName);
             filterIngredientsList.splice(index, 1);
-            break;
-        case "appliance" :
-            index = filterAppliancesList.indexOf(itemClicked);
+        }
+        if (tagClasses.includes("item-selected--filter2")) {
+            index = filterAppliancesList.indexOf(tagName);
             filterAppliancesList.splice(index, 1);
-            break;
-        case "ustensils" :
-            index = filterUtensilsList.indexOf(itemClicked);
+        }
+        if (tagClasses.includes("item-selected--filter3")) {
+            index = filterUtensilsList.indexOf(tagName);
             filterUtensilsList.splice(index, 1);
-            break;
+        }
     }
 }
-
-filterIngredientsList = [];
-filterAppliancesList = [];
-filterUtensilsList = [];
 
 
 

@@ -52,10 +52,8 @@ function userClickOnItem() {
         elt.addEventListener("click", function() {
             let tagName = getTagNameOnClick(elt);
             let filterName = getFilterNameOnClick(elt);
-            addTagNameToSession(tagName, filterName);
             let receipesList = [];
             receipesList = whichReceipesList();
-            console.log(receipesList);
             searchByTag(tagName, filterName, receipesList);
         });
     }
@@ -87,12 +85,12 @@ function userClicksOnCross() {
     for (let elt of elts) {
         elt.addEventListener("click", function() {
             let tag = elt.closest("li.item-selected");
-            let key = tag.firstElementChild.innerHTML;
-            sessionStorage.removeItem(key);
+            let receipesList = [];
+            receipesList = determinateReceipesList();
             tag.remove();
-            // get tags from session
-            // and relaunch a search by tag for each tag
+            updateResultsFromTagRemoved(receipesList);
         });
     }
 }
+
 

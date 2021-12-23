@@ -1,21 +1,38 @@
-sessionStorage.clear(); // sessionStorage.length = 0
+
 // FUNCTIONS
 function searchByTag(tagName, filterName, receipesList) {    
-    FindReceipeswithTag(filterName, tagName, receipesList);
+    FindReceipesWithTag(filterName, tagName, receipesList);
     generateNewReceipesListFromTagSearch();
     displayReceipes(newReceipesList);
     generateAllFiltersList(newReceipesList);
-    removeTagFromList(tagName, filterName);
+    displayTag(tagName, filterName);
+    removeTagFromList();
     removeActualHtmlList();
     createAndAppendAllFiltersList();
-    displayTag(tagName, filterName);
     userClickOnItem();
     userClicksOnCross();
 }
 
+function updateResultsFromTagRemoved(receipesList) {
+    let tags = document.querySelectorAll("li.item-selected");
+    // ajouter quoi faire si tag.length === 0
+    for (let tag of tags) {
+        let tagName = tag.firstElementChild.innerText;
+        let filterName = getFilterNameOfTag(tag);
+        FindReceipesWithTag(filterName, tagName, receipesList);
+        generateNewReceipesListFromTagSearch();
+        displayReceipes(newReceipesList);
+        generateAllFiltersList(newReceipesList);
+        removeActualHtmlList();
+        createAndAppendAllFiltersList();
+        userClickOnItem();
+        userClicksOnCross();
+    }
+}
+
 
 //find receipes depends of filter type
-function FindReceipeswithTag(filterName, filter, receipesList) {
+function FindReceipesWithTag(filterName, filter, receipesList) {
     switch (filterName) {
         case 'ingredients' :
             findReceipesWithIngredient(filter, receipesList);
@@ -63,14 +80,20 @@ function findReceipesWithUtensil(utensilFilter, receipesList) {
     }  
 }
 
-
-// Add tag name to session storage
-function addTagNameToSession(tagName, typeOfFilter) {
-    let key = tagName;
-    let value = typeOfFilter;
-    sessionStorage.setItem(key, value);
-    console.log(sessionStorage.getItem(key));
+function getFilterNameOfTag(tag) {
+    let tagClasses = tag.className;
+    if (tagClasses.includes("item-selected--filter1")) {
+        return "ingredients";
+    }
+    if (tagClasses.includes("item-selected--filter2")) {
+        return "appliance";
+    }
+    if (tagClasses.includes("item-selected--filter3")) {
+        return "ustensils";
+    }
 }
+
+
 
 
 
