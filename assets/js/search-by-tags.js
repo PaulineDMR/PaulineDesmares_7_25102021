@@ -10,13 +10,15 @@ function searchByTag(tagName, filterName, receipesList) {
     removeActualHtmlList();
     createAndAppendAllFiltersList();
     userClickOnItem();
-    userClicksOnCross();
 }
 
 function updateResultsFromTagRemoved(receipesList) {
     let tags = document.querySelectorAll("li.item-selected");
+    console.log(tags);
+    console.log(tags.length);
     // ajouter quoi faire si tag.length === 0
     for (let tag of tags) {
+        //ecrire le parcours et la remise à zero des listes pour comprendre
         let tagName = tag.firstElementChild.innerText;
         let filterName = getFilterNameOfTag(tag);
         FindReceipesWithTag(filterName, tagName, receipesList);
@@ -26,7 +28,6 @@ function updateResultsFromTagRemoved(receipesList) {
         removeActualHtmlList();
         createAndAppendAllFiltersList();
         userClickOnItem();
-        userClicksOnCross();
     }
 }
 
@@ -92,19 +93,3 @@ function getFilterNameOfTag(tag) {
         return "ustensils";
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

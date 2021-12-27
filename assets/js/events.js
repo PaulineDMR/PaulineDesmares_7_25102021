@@ -80,7 +80,8 @@ function getFilterNameOnClick(itemClicked) {
 userClickOnItem();
 
 // User clicks on the cross of the tag
-function userClicksOnCross() {
+/*function userClicksOnCross() {
+    console.log("appel");
     let elts = document.querySelectorAll("i.item-selected__icon");
     for (let elt of elts) {
         elt.addEventListener("click", function() {
@@ -91,6 +92,15 @@ function userClicksOnCross() {
             updateResultsFromTagRemoved(receipesList);
         });
     }
+}*/
+
+function userClicksOnCross(i, li) {
+    i.addEventListener("click", function() {
+        let receipesList = [];
+        receipesList = determinateReceipesList();
+        li.remove();
+        updateResultsFromTagRemoved(receipesList);
+    });
 }
 
 

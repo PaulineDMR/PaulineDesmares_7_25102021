@@ -25,4 +25,5 @@ function createAndAppendTagHtmlBlock(itemName, filterName) {
     li.append(p);
     li.append(i);
     ul.append(li);
+    userClicksOnCross(i, li);
 }
