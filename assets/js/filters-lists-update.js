@@ -1,81 +1,73 @@
-    
-/*function updateFiltersList(inputValue, filterName) {
-    filterIngredientsList = [];
-    filterAppliancesList = [];
-    filterUtensilsList = [];
-    let receipesListToCompare = whichReceipesList();
-    compareInputToReceipeslist(receipesListToCompare, filterName, inputValue);
-    removeActualHtmlList();
-    displayFiltersList(filterName);  
-}*/
 
-// Compare input to receipe
-function compareInputToReceipeslist(receipesList, filterName, inputValue) {
-    newReceipesList= [];
+// Update list from user inut in filters List input field
+function updateFiltersListWithInput(inputValue, inputElt, filterName) {
+    let receipesList = determinateReceipesList();
     switch (filterName) {
-        case "filter-ingredients" :
-            compareIngredientInputToFiltersList(receipesList, inputValue);
+        case "ingredients" :
+            generateIngredientsListFromReceipesList(receipesList);
+            filterIngredientsList = generateItemsListFromInput(filterIngredientsList, inputValue);            
             break;
-        case "filter-appareils" :
-            compareApplianceInputToFiltersList(receipesList, inputValue);
+        case "appareils" :
+            generateAppliancesListFromReceipesList(receipesList);          
+            filterAppliancesList = generateItemsListFromInput(filterAppliancesList, inputValue);  
             break;
-        case "filter-ustensiles" :
-            compareUtensilInputToFiltersList(receipesList, inputValue);
+        case "ustensiles" :
+            generateUtensilsListFromReceipesList(receipesList);
+            filterUtensilsList = generateItemsListFromInput(filterUtensilsList, inputValue);
             break;
     }
 }
 
-function compareIngredientInputToFiltersList(receipesList, inputValue) {
+function generateItemsListFromInput(list, inputValue) {
+    let tempList = [];
+    for (let elt of list) {
+        let string = elt.toLowerCase();
+        if (string.includes(inputValue.toLowerCase())) {
+            tempList.push(elt);
+        }
+    }
+    return tempList;
+}
+
+// Get 3 filters list from receipes list
+function generateAllFiltersList(receipesList) {
+    generateIngredientsListFromReceipesList(receipesList);
+    generateAppliancesListFromReceipesList(receipesList);
+    generateUtensilsListFromReceipesList(receipesList);
+}
+
+function generateIngredientsListFromReceipesList(receipesList) {
     filterIngredientsList = [];
     for (let receipe of receipesList) {
         for (let ingredient of receipe.ingredients) {
-            let ingredientName = ingredient.ingredient.toLowerCase();
-            console.log(ingredientName);
-            if(ingredientName.includes(inputValue.toLowerCase())) {
-                if (!filterIngredientsList.includes(ingredient.ingredient)) {
-                    filterIngredientsList.push(ingredient.ingredient);                
-                }
-                newReceipesList.push(receipe);
+            if (!filterIngredientsList.includes(ingredient.ingredient)) {
+                filterIngredientsList.push(ingredient.ingredient);                
             }
         }
     }
     filterIngredientsList.sort();
-    generateAppliancesListFromReceipesList(newReceipesList);
-    generateUtensilsListFromReceipesList(newReceipesList);
 }
 
-function compareApplianceInputToFiltersList(receipesList, inputValue) {
+function generateAppliancesListFromReceipesList(receipesList) {
     filterAppliancesList = [];
     for (let receipe of receipesList) {
-        let applianceName = receipe.appliance.toLowerCase();
-            if(applianceName.includes(inputValue.toLowerCase())) {
-                if (!filterAppliancesList.includes(receipe.appliance)) {
-                    filterAppliancesList.push(receipe.appliance);                
-                }
-                newReceipesList.push(receipe);
-            }
+        if (!filterAppliancesList.includes(receipe.appliance)) {
+            filterAppliancesList.push(receipe.appliance);            
         }
+    }
     filterAppliancesList.sort();
-    generateIngredientsListFromReceipesList(newReceipesList);
-    generateUtensilsListFromReceipesList(newReceipesList);
 }
 
-function compareUtensilInputToFiltersList(receipesList, inputValue) {
+function generateUtensilsListFromReceipesList(receipesList) {
     filterUtensilsList = [];
     for (let receipe of receipesList) {
         for (let utensil of receipe.ustensils) {
-            let utensilName = utensil.toLowerCase();
-            if(utensilName.includes(inputValue.toLowerCase())) {
-                if (!filterUtensilsList.includes(utensil)) {
-                    filterUtensilsList.push(utensil);                
-                }
-                newReceipesList.push(receipe);
+            if (!filterUtensilsList.includes(utensil)) {
+                filterUtensilsList.push(utensil);
             }
         }
     }
     filterUtensilsList.sort();
-    generateIngredientsListFromReceipesList(newReceipesList);
-    generateAppliancesListFromReceipesList(newReceipesList);
 }
 
 // Remove tag selected from filterList to display 
@@ -98,6 +90,8 @@ function removeTagFromList() {
         }
     }
 }
+
+generateAllFiltersList(determinateReceipesList());
 
 
 

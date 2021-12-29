@@ -1,28 +1,54 @@
 // Display one list clicked
-function displayFiltersList(filterName) {
-    switch (filterName) {
-        case "filter-ingredients" :
-            displayUl(filterName);
-            break;
-        case "filter-appareils" :
-            displayUl(filterName);
-            break;
-        case "filter-ustensiles" :
-            displayUl(filterName);
-            break;
+function displayFiltersList(eltClicked) {
+    eraseInputs();
+    makeFiltersListNonVisible();
+    makeFiltersListVisible(eltClicked);
+}
+
+function eraseInputs() {
+    let inputs = document.querySelectorAll("input.filter__input");
+    for (let input of inputs) {        
+        input.value = null;
     }
 }
 
-// Display ul.class-name elt
-function displayUl(className) {
-    const ul = document.querySelector("ul." + className);
-    ul.style.display = "flex";
+function makeFiltersListNonVisible() {
+    let filtersLists = document.querySelectorAll("ul.filter__items-list");
+    for (let filtersList of filtersLists) {
+        if(filtersList.className.includes("filter__items-list--visible")) {
+            filtersList.classList.remove("filter__items-list--visible");
+        }   
+    }
+}
+
+function makeFiltersListVisible(eltClicked) {
+    let filtersList = getFiltersListToDisplay(eltClicked);
+    if(!filtersList.className.includes("filter__items-list--visible")) {
+        filtersList.classList.add("filter__items-list--visible");
+    }
+}
+
+function getFiltersListToDisplay(eltClicked) {
+    let ancestor = eltClicked.closest("div.filter");
+    let filtersList = ancestor.children[1];
+    return filtersList;
+}
+
+// erase input depends on key pressed on new input or not
+function eraseInputOrNot(inputUsed) {
+    let inputs = document.querySelectorAll("input.filter__input");
+    if (inputUsed.value === "") {
+        for (let input of inputs) {        
+            input.value = null;
+        }
+    }
 }
 
 // Display the html filters list after search by tag
-function displayNewFiltersLists() {
+function appendNewFiltersLists() {
     removeActualHtmlList();
     createAndAppendAllFiltersList();
+    userClickOnItem();
 }
 
 // Create and append html filters list
@@ -67,51 +93,6 @@ function createFilterItemHtmlBlock(itemName, ul) {
     ul.append(li);
 }
 
-
-
-
-// Get 3 filters list from receipes list
-function generateAllFiltersList(receipesList) {
-    generateIngredientsListFromReceipesList(receipesList);
-    generateAppliancesListFromReceipesList(receipesList);
-    generateUtensilsListFromReceipesList(receipesList);
-}
-
-function generateIngredientsListFromReceipesList(receipesList) {
-    filterIngredientsList = [];
-    for (let receipe of receipesList) {
-        for (let ingredient of receipe.ingredients) {
-            if (!filterIngredientsList.includes(ingredient.ingredient)) {
-                filterIngredientsList.push(ingredient.ingredient);                
-            }
-        }
-    }
-    filterIngredientsList.sort();
-}
-
-function generateAppliancesListFromReceipesList(receipesList) {
-    filterAppliancesList = [];
-    for (let receipe of receipesList) {
-        if (!filterAppliancesList.includes(receipe.appliance)) {
-            filterAppliancesList.push(receipe.appliance);            
-        }
-    }
-    filterAppliancesList.sort();
-}
-
-function generateUtensilsListFromReceipesList(receipesList) {
-    filterUtensilsList = [];
-    for (let receipe of receipesList) {
-        for (let utensil of receipe.ustensils) {
-            if (!filterUtensilsList.includes(utensil)) {
-                filterUtensilsList.push(utensil);
-            }
-        }
-    }
-    filterUtensilsList.sort();
-}
-    
-
 // Remove a filters List from html
 function removeActualHtmlList() {
     let uls = document.querySelectorAll("ul.filter__items-list");
@@ -121,6 +102,4 @@ function removeActualHtmlList() {
 }
 
 
-
-generateAllFiltersList(determinateReceipesList());
 createAndAppendAllFiltersList();

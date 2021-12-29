@@ -1,25 +1,27 @@
 // On click filters btn
-function onClickFilterBtn() {
+function onClickFilterArrowIcon() {
     let btnList = document.querySelectorAll("i.filter__icon");
     for (let elt of btnList) {
         elt.addEventListener("click", function(e) {
-            let filter = e.target.dataset.filterName;
-            displayFiltersList(filter);
+            displayFiltersList(e.target);
         });
     }
 }
 
-onClickFilterBtn();
+onClickFilterArrowIcon();
 
 // Event : User enter a value
-
 function userInputValue() {
     let inputsElt = document.querySelectorAll("input.filter__input");
     for (let elt of inputsElt) {
         elt.addEventListener("keydown", function(e) {
             let inputValue = getUserTagInputValue(elt, e.key);
-            let filterName = getFilterNameFromUserInput(elt);
-            updateFiltersList(inputValue, filterName);
+            let filterName = e.target.id;
+            makeFiltersListNonVisible();
+            eraseInputOrNot(elt);
+            updateFiltersListWithInput(inputValue, e.target, filterName);
+            appendNewFiltersLists();
+            makeFiltersListVisible(e.target);
         });
     }
 }
@@ -32,7 +34,7 @@ function getUserTagInputValue(inputElt, keyPressed) {
     }
 }
 
-function getFilterNameFromUserInput(inputElt) {
+/*function getFilterNameFromUserInput(inputElt) {
     switch (inputElt.id) {
         case "ingredients" :
             return "filter-ingredients";
@@ -41,7 +43,7 @@ function getFilterNameFromUserInput(inputElt) {
         case "ustensiles" :
             return "filter-ustensiles";
     }
-}
+}*/
 
 userInputValue();
 
@@ -85,8 +87,6 @@ function userClicksOnCross(i, li) {
     i.addEventListener("click", function() {
         let receipesList = determinateReceipesList();
         li.remove();
-        searchByTag(receipesList);
+        searchByTag(receipesList);        
     });
 }
-
-

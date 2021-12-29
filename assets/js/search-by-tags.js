@@ -2,19 +2,21 @@
 
 function searchByTag(receipesList) {
     let tags = document.querySelectorAll("li.item-selected");
-    console.log(tags);
-    console.log(tags.length);
-    for (let tag of tags) {
-        let tagName = tag.firstElementChild.innerText;
-        let filterName = getFilterNameOfTag(tag);
-        filterReceipesWithTag(filterName, tagName, receipesList);
-        receipesList = newReceipesList;
-    }
-    displayReceipes(newReceipesList);
-    generateAllFiltersList(newReceipesList);
+    if (tags.length > 0) {
+        for (let tag of tags) {
+            let tagName = tag.firstElementChild.innerText;
+            let filterName = getFilterNameOfTag(tag);
+            filterReceipesWithTag(filterName, tagName, receipesList);
+            receipesList = newReceipesList;
+        }
+        displayReceipes(newReceipesList);
+        generateAllFiltersList(newReceipesList);
+    } else {
+        displayReceipes(receipesList);
+        generateAllFiltersList(receipesList);
+    }   
     removeTagFromList();
-    displayNewFiltersLists();
-    userClickOnItem();   
+    appendNewFiltersLists();
 }
 
 //filter receipes depends of filter type

@@ -238,6 +238,12 @@ input:focus-visible {
   display: none;
 }
 
+.filter__items-list--visible {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
 .filter__item {
   width: 33.33%;
   font-size: 18px;
