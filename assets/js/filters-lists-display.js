@@ -13,6 +13,18 @@ function displayFiltersList(filterName) {
     }
 }
 
+// Display ul.class-name elt
+function displayUl(className) {
+    const ul = document.querySelector("ul." + className);
+    ul.style.display = "flex";
+}
+
+// Display the html filters list after search by tag
+function displayNewFiltersLists() {
+    removeActualHtmlList();
+    createAndAppendAllFiltersList();
+}
+
 // Create and append html filters list
 
 // Create and append the 3 filters list
@@ -55,11 +67,7 @@ function createFilterItemHtmlBlock(itemName, ul) {
     ul.append(li);
 }
 
-// Display ul.class-name elt
-function displayUl(className) {
-    const ul = document.querySelector("ul." + className);
-    ul.style.display = "flex";
-}
+
 
 
 // Get 3 filters list from receipes list

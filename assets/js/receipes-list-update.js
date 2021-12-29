@@ -7,7 +7,6 @@ function generateNewReceipesList() {
             }
         }
     }
-    return newReceipesList; 
 }
 
 function generateNewReceipesListFromTagSearch() {
@@ -19,5 +18,4 @@ function generateNewReceipesListFromTagSearch() {
             }
         }
     }
-    return newReceipesList; 
 }

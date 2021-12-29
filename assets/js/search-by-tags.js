@@ -1,54 +1,39 @@
 
-// FUNCTIONS
-function searchByTag(tagName, filterName, receipesList) {    
-    FindReceipesWithTag(filterName, tagName, receipesList);
-    generateNewReceipesListFromTagSearch();
-    displayReceipes(newReceipesList);
-    generateAllFiltersList(newReceipesList);
-    displayTag(tagName, filterName);
-    removeTagFromList();
-    removeActualHtmlList();
-    createAndAppendAllFiltersList();
-    userClickOnItem();
-}
 
-function updateResultsFromTagRemoved(receipesList) {
+function searchByTag(receipesList) {
     let tags = document.querySelectorAll("li.item-selected");
     console.log(tags);
     console.log(tags.length);
-    // ajouter quoi faire si tag.length === 0
     for (let tag of tags) {
-        //ecrire le parcours et la remise à zero des listes pour comprendre
         let tagName = tag.firstElementChild.innerText;
         let filterName = getFilterNameOfTag(tag);
-        FindReceipesWithTag(filterName, tagName, receipesList);
-        generateNewReceipesListFromTagSearch();
-        displayReceipes(newReceipesList);
-        generateAllFiltersList(newReceipesList);
-        removeActualHtmlList();
-        createAndAppendAllFiltersList();
-        userClickOnItem();
+        filterReceipesWithTag(filterName, tagName, receipesList);
+        receipesList = newReceipesList;
     }
+    displayReceipes(newReceipesList);
+    generateAllFiltersList(newReceipesList);
+    removeTagFromList();
+    displayNewFiltersLists();
+    userClickOnItem();   
 }
 
-
-//find receipes depends of filter type
-function FindReceipesWithTag(filterName, filter, receipesList) {
+//filter receipes depends of filter type
+function filterReceipesWithTag(filterName, filter, receipesList) {
     switch (filterName) {
         case 'ingredients' :
-            findReceipesWithIngredient(filter, receipesList);
+            filterReceipesWithIngredient(filter, receipesList);
             break;
         case 'appliance' :
-            findReceipesWithAppliance(filter, receipesList);
+            filterReceipesWithAppliance(filter, receipesList);
             break;
         case 'ustensils' :
-            findReceipesWithUtensil(filter, receipesList);
+            filterReceipesWithUtensil(filter, receipesList);
         break;
     }
 }
 
 //Find receipes with ingredient tag
-function findReceipesWithIngredient(ingredientFilter, receipesList) {
+function filterReceipesWithIngredient(ingredientFilter, receipesList) {
     filteredReceipesIdFromTag = [];
     for (let receipe of receipesList) {
         for (let ingredient of receipe.ingredients) {
@@ -56,21 +41,23 @@ function findReceipesWithIngredient(ingredientFilter, receipesList) {
                 filteredReceipesIdFromTag.push(receipe.id);
             }
         }
-    }  
+    }
+    generateNewReceipesListFromTagSearch();
 }
 
 //Find receipes with appliance tag
-function findReceipesWithAppliance(applianceFilter, receipesList) {
+function filterReceipesWithAppliance(applianceFilter, receipesList) {
     filteredReceipesIdFromTag = [];
     for (let receipe of receipesList) {
         if (receipe.appliance === applianceFilter) {
             filteredReceipesIdFromTag.push(receipe.id);
         }
     }
+    generateNewReceipesListFromTagSearch();
 }
 
 //Find receipes with utensil tag
-function findReceipesWithUtensil(utensilFilter, receipesList) {
+function filterReceipesWithUtensil(utensilFilter, receipesList) {
     filteredReceipesIdFromTag = [];
     for (let receipe of receipesList) {
         for (let utensil of receipe.ustensils) {
@@ -78,7 +65,8 @@ function findReceipesWithUtensil(utensilFilter, receipesList) {
                 filteredReceipesIdFromTag.push(receipe.id);
             }
         }
-    }  
+    }
+    generateNewReceipesListFromTagSearch();
 }
 
 function getFilterNameOfTag(tag) {

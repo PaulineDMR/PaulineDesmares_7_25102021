@@ -6,10 +6,10 @@ let filterAppliancesList = [];
 let filterUtensilsList = [];
 
 let filteredReceipesId = []; // filtered from main search
-let filteredReceipesIdFromTag = [];
-let newReceipesList = []; // mise à jour quand user tag input
+filteredReceipesIdFromTag = []; // updated with serachByTag function
+let newReceipesList = [];
 
-// Déterminate wich receipes list to use
+// Déterminate wich receipes list to use for search by tag
 function determinateReceipesList() {
     switch(searchStatus) {
         case "No search":
@@ -17,15 +17,6 @@ function determinateReceipesList() {
         default:
             return recipes;
         case "Receipes found":
-            return generateNewReceipesList();
-    }
-}
-
-function whichReceipesList() {
-    let tagList = document.querySelectorAll("li.item-selected");
-    if (tagList.length === 0) {
-        return determinateReceipesList();
-    } else {
-        return generateNewReceipesListFromTagSearch();
+            return newReceipesList;
     }
 }

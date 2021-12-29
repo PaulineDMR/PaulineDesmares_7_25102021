@@ -51,10 +51,10 @@ function userClickOnItem() {
     for (let elt of elts) {
         elt.addEventListener("click", function() {
             let tagName = getTagNameOnClick(elt);
-            let filterName = getFilterNameOnClick(elt);
-            let receipesList = [];
-            receipesList = whichReceipesList();
-            searchByTag(tagName, filterName, receipesList);
+            let filterName = getFilterDesignOnClick(elt);
+            let receipesList = determinateReceipesList();
+            displayTag(tagName, filterName);
+            searchByTag(receipesList);
         });
     }
 }
@@ -63,43 +63,29 @@ function getTagNameOnClick(itemClicked) {
     return itemClicked.innerText;
 }
 
-function getFilterNameOnClick(itemClicked) {
+function getFilterDesignOnClick(itemClicked) {
     let elt = itemClicked.closest("ul.filter__items-list");
     let eltClasses = elt.className;
     if (eltClasses.includes("filter-ingredients")) {
-        return "ingredients";
+        return "item-selected--filter1";
     }
     if (eltClasses.includes("filter-appareils")) {
-        return "appliance";
+        return "item-selected--filter2";
     }
     if (eltClasses.includes("filter-ustensiles")) {
-        return "ustensils"
+        return "item-selected--filter3";
     }   
 }
 
 userClickOnItem();
 
 // User clicks on the cross of the tag
-/*function userClicksOnCross() {
-    console.log("appel");
-    let elts = document.querySelectorAll("i.item-selected__icon");
-    for (let elt of elts) {
-        elt.addEventListener("click", function() {
-            let tag = elt.closest("li.item-selected");
-            let receipesList = [];
-            receipesList = determinateReceipesList();
-            tag.remove();
-            updateResultsFromTagRemoved(receipesList);
-        });
-    }
-}*/
-
 function userClicksOnCross(i, li) {
+    // ajouter quoi faire si tag.length === 0
     i.addEventListener("click", function() {
-        let receipesList = [];
-        receipesList = determinateReceipesList();
+        let receipesList = determinateReceipesList();
         li.remove();
-        updateResultsFromTagRemoved(receipesList);
+        searchByTag(receipesList);
     });
 }
 
