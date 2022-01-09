@@ -19,7 +19,7 @@ function userInputValue() {
             let filterName = e.target.id;
             makeFiltersListNonVisible();
             eraseInputOrNot(elt);
-            updateFiltersListWithInput(inputValue, e.target, filterName);
+            updateFiltersListsWithInput(inputValue, e.target, filterName);
             appendNewFiltersLists();
             makeFiltersListVisible(e.target);
         });

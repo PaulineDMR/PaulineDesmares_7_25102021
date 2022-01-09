@@ -1,7 +1,13 @@
 
 // Update list from user inut in filters List input field
-function updateFiltersListWithInput(inputValue, inputElt, filterName) {
-    let receipesList = determinateReceipesList();
+function updateFiltersListsWithInput(inputValue, inputElt, filterName) {
+    let tags = document.querySelectorAll("li.item-selected");
+    let receipesList = [];
+    if (tags.length > 0) {
+        receipesList = newReceipesList;
+    } else {
+        receipesList = determinateReceipesList();
+    }
     switch (filterName) {
         case "ingredients" :
             generateIngredientsListFromReceipesList(receipesList);
@@ -36,8 +42,8 @@ function generateAllFiltersList(receipesList) {
     generateUtensilsListFromReceipesList(receipesList);
 }
 
-function generateIngredientsListFromReceipesList(receipesList) {
-    filterIngredientsList = [];
+    function generateIngredientsListFromReceipesList(receipesList) {
+        filterIngredientsList = [];
     for (let receipe of receipesList) {
         for (let ingredient of receipe.ingredients) {
             if (!filterIngredientsList.includes(ingredient.ingredient)) {
