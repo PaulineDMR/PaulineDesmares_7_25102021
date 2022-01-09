@@ -6,7 +6,7 @@ let filterAppliancesList = [];
 let filterUtensilsList = [];
 
 let filteredReceipesId = []; // filtered from main search
-filteredReceipesIdFromTag = []; // updated with serachByTag function
+let filteredReceipesIdFromTag = []; // updated with serachByTag function
 let newReceipesList = [];
 
 // Déterminate wich receipes list to use for search by tag

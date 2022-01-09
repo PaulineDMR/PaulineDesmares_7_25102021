@@ -1,3 +1,29 @@
+
+// User enter a value in the main search field
+function userPressKeyInMainSearch() {
+    let inputElt = document.querySelector("input.main-search__input");
+    inputElt.addEventListener("keydown", function(e) {
+        let inputValue = getUserInputValue(inputElt, e.key);
+        if (inputValue.length >= 3) {
+            searchByUserInput(inputValue);
+        } else {
+            removeThumb();
+            displayReceipes(recipes);
+        }
+    });
+}
+
+userPressKeyInMainSearch();
+
+function getUserInputValue(inputElt, keyPressed) {
+    if(keyPressed === "Backspace") {
+        return  inputElt.value.substring(0, inputElt.value.length - 1);
+    } else {
+        return inputElt.value + keyPressed;
+    }
+}
+
+
 // On click filters btn
 function onClickFilterArrowIcon() {
     let btnList = document.querySelectorAll("i.filter__icon");
@@ -10,12 +36,12 @@ function onClickFilterArrowIcon() {
 
 onClickFilterArrowIcon();
 
-// Event : User enter a value
+// Event : User enter a value in a tag field
 function userInputValue() {
     let inputsElt = document.querySelectorAll("input.filter__input");
     for (let elt of inputsElt) {
         elt.addEventListener("keydown", function(e) {
-            let inputValue = getUserTagInputValue(elt, e.key);
+            let inputValue = getUserInputValue(elt, e.key);
             let filterName = e.target.id;
             makeFiltersListNonVisible();
             eraseInputOrNot(elt);
@@ -23,14 +49,6 @@ function userInputValue() {
             appendNewFiltersLists();
             makeFiltersListVisible(e.target);
         });
-    }
-}
-
-function getUserTagInputValue(inputElt, keyPressed) {
-    if(keyPressed === "Backspace") {
-        return  inputElt.value.substring(0, inputElt.value.length - 1);
-    } else {
-        return inputElt.value + keyPressed;
     }
 }
 

@@ -30,7 +30,7 @@ function filterReceipesWithTag(filterName, filter, receipesList) {
             break;
         case 'ustensils' :
             filterReceipesWithUtensil(filter, receipesList);
-        break;
+            break;
     }
 }
 
