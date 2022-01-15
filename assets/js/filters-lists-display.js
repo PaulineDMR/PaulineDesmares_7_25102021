@@ -13,24 +13,24 @@ function eraseInputs() {
 }
 
 function makeFiltersListNonVisible() {
-    let filtersLists = document.querySelectorAll("ul.filter__items-list");
+    let filtersLists = document.querySelectorAll("div.filter");
     for (let filtersList of filtersLists) {
-        if(filtersList.className.includes("filter__items-list--visible")) {
-            filtersList.classList.remove("filter__items-list--visible");
+        if(filtersList.className.includes("filter--visible")) {
+            filtersList.classList.remove("filter--visible");
         }   
     }
 }
 
 function makeFiltersListVisible(eltClicked) {
     let filtersList = getFiltersListToDisplay(eltClicked);
-    if(!filtersList.className.includes("filter__items-list--visible")) {
-        filtersList.classList.add("filter__items-list--visible");
+    if(!filtersList.className.includes("filter--visible")) {
+        filtersList.classList.add("filter--visible");
     }
 }
 
 function getFiltersListToDisplay(eltClicked) {
-    let ancestor = eltClicked.closest("div.filter");
-    let filtersList = ancestor.children[1];
+    let filtersList = eltClicked.closest("div.filter");
+    //let filtersList = ancestor.children[1];
     return filtersList;
 }
 
