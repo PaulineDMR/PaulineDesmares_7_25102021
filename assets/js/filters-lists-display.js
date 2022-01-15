@@ -1,8 +1,13 @@
 // Display one list clicked
 function displayFiltersList(eltClicked) {
     eraseInputs();
-    makeFiltersListNonVisible();
-    makeFiltersListVisible(eltClicked);
+    let filtersList = getFiltersListToDisplay(eltClicked);
+    if(!filtersList.className.includes("filter--visible")) {
+        makeFiltersListNonVisible();
+        makeFiltersListVisible(filtersList);
+    } else {
+        makeFiltersListNonVisible()
+    }
 }
 
 function eraseInputs() {
@@ -17,15 +22,14 @@ function makeFiltersListNonVisible() {
     for (let filtersList of filtersLists) {
         if(filtersList.className.includes("filter--visible")) {
             filtersList.classList.remove("filter--visible");
-        }   
+            iconArrowChangeToDown(filtersList);
+        }
     }
 }
 
-function makeFiltersListVisible(eltClicked) {
-    let filtersList = getFiltersListToDisplay(eltClicked);
-    if(!filtersList.className.includes("filter--visible")) {
+function makeFiltersListVisible(filtersList) {
         filtersList.classList.add("filter--visible");
-    }
+        iconArrowChangeToUp(filtersList);
 }
 
 function getFiltersListToDisplay(eltClicked) {
@@ -101,5 +105,17 @@ function removeActualHtmlList() {
     }
 }
 
+// Change arrow down <-> up
+function iconArrowChangeToUp (filtersListElt) {
+    let iconElt = filtersListElt.querySelector("i.filter__icon");
+    iconElt.classList.remove('fa-chevron-down');
+    iconElt.classList.add('fa-chevron-up');
+}
 
+function iconArrowChangeToDown (filtersListElt) {
+    let iconElt = filtersListElt.querySelector("i.filter__icon");
+    iconElt.classList.remove('fa-chevron-up');
+    iconElt.classList.add('fa-chevron-down');
+}
+ 
 createAndAppendAllFiltersList();
