@@ -1,4 +1,4 @@
-function searchByUserInput(inputValue) {
+/*function searchByUserInput(inputValue) {
     console.log(inputValue);
     filteredReceipesId = [];
     for (let receipe of recipes) {
@@ -27,4 +27,4 @@ function searchByUserInput(inputValue) {
         alert("Pas de recette avec vos critères de recherche");
     }
     console.log(filteredReceipesId.length);
-}
+}*/
