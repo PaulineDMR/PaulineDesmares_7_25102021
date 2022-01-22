@@ -29,7 +29,7 @@ function onClickFilterArrowIcon() {
     let btnList = document.querySelectorAll("i.filter__icon");
     for (let elt of btnList) {
         elt.addEventListener("click", function(e) {
-            displayFiltersList(e.target);
+            displayFiltersListOnArrowClicked(e.target);
         });
     }
 }
@@ -43,11 +43,7 @@ function userInputValue() {
         elt.addEventListener("keydown", function(e) {
             let inputValue = getUserInputValue(elt, e.key);
             let filterName = e.target.id;
-            makeFiltersListNonVisible();
-            eraseInputOrNot(elt);
-            updateFiltersListsWithInput(inputValue, e.target, filterName);
-            appendNewFiltersLists();
-            makeFiltersListVisible(e.target);
+            displayFiltersListonUserInput(inputValue, e.target, filterName);
         });
     }
 }

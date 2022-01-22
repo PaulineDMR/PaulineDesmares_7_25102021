@@ -1,14 +1,26 @@
-// Display one list clicked
-function displayFiltersList(eltClicked) {
+// Display one list arrow clicked
+function displayFiltersListOnArrowClicked(arrowClicked) {
     eraseInputs();
-    let filtersList = getFiltersListToDisplay(eltClicked);
-    if(!filtersList.className.includes("filter--visible")) {
+    let filtersListElt = getFiltersListToDisplay(arrowClicked);// return a div.filter elt
+    if(!filtersListElt.className.includes("filter--visible")) {
         makeFiltersListNonVisible();
-        makeFiltersListVisible(filtersList);
+        makeFiltersListVisible(filtersListElt, arrowClicked);
     } else {
         makeFiltersListNonVisible()
     }
 }
+
+// Display list on user input
+function displayFiltersListonUserInput(inputValue, inputEltUsed, filterName) {
+    makeFiltersListNonVisible();
+    eraseInputOrNot(inputEltUsed);
+    updateFiltersListsWithInput(inputValue, inputEltUsed, filterName);
+    appendNewFiltersLists();
+    let arrowElt = inputEltUsed.nextElementSibling;
+    let filtersEltList = inputEltUsed.closest("div.filter");
+    makeFiltersListVisible(filtersEltList, arrowElt);
+}
+
 
 function eraseInputs() {
     let inputs = document.querySelectorAll("input.filter__input");
@@ -17,26 +29,38 @@ function eraseInputs() {
     }
 }
 
+function getFiltersListToDisplay(eltClicked) {
+    let filtersList = eltClicked.closest("div.filter");
+    return filtersList;
+}
+
 function makeFiltersListNonVisible() {
-    let filtersLists = document.querySelectorAll("div.filter");
-    for (let filtersList of filtersLists) {
-        if(filtersList.className.includes("filter--visible")) {
-            filtersList.classList.remove("filter--visible");
-            iconArrowChangeToDown(filtersList);
+    let filtersListElts = document.querySelectorAll("div.filter");
+    for (let filtersListElt of filtersListElts) {
+        if(filtersListElt.className.includes("filter--visible")) {
+            filtersListElt.classList.remove("filter--visible");
+            let iconElt = filtersListElt.querySelector("i.filter__icon");
+            iconArrowChangeToDown(iconElt);
         }
     }
 }
 
-function makeFiltersListVisible(filtersList) {
-        filtersList.classList.add("filter--visible");
-        iconArrowChangeToUp(filtersList);
+function makeFiltersListVisible(filtersListElt, arrowClicked) {
+        filtersListElt.classList.add("filter--visible");
+        iconArrowChangeToUp(arrowClicked);
 }
 
-function getFiltersListToDisplay(eltClicked) {
-    let filtersList = eltClicked.closest("div.filter");
-    //let filtersList = ancestor.children[1];
-    return filtersList;
+// Change arrow down <-> up
+function iconArrowChangeToUp(arrowIcon) {
+    arrowIcon.classList.remove('fa-chevron-down');
+    arrowIcon.classList.add('fa-chevron-up');
 }
+
+function iconArrowChangeToDown (iconElt) {
+    iconElt.classList.remove('fa-chevron-up');
+    iconElt.classList.add('fa-chevron-down');
+}
+
 
 // erase input depends on key pressed on new input or not
 function eraseInputOrNot(inputUsed) {
@@ -105,17 +129,6 @@ function removeActualHtmlList() {
     }
 }
 
-// Change arrow down <-> up
-function iconArrowChangeToUp (filtersListElt) {
-    let iconElt = filtersListElt.querySelector("i.filter__icon");
-    iconElt.classList.remove('fa-chevron-down');
-    iconElt.classList.add('fa-chevron-up');
-}
 
-function iconArrowChangeToDown (filtersListElt) {
-    let iconElt = filtersListElt.querySelector("i.filter__icon");
-    iconElt.classList.remove('fa-chevron-up');
-    iconElt.classList.add('fa-chevron-down');
-}
  
 createAndAppendAllFiltersList();
