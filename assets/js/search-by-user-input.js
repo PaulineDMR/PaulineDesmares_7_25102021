@@ -15,8 +15,10 @@ function searchByUserInput(inputValue) {
         displayReceipes(newReceipesList);
     } else if (filteredReceipesId.length === 0) {
         mainSearchStatus = "No receipe found";
-        alert("Pas de recette avec vos critères de recherche");
+        removeThumb();
     }
+
+    displayMessageOrNot();
     console.log(filteredReceipesId.length);
 }
 
@@ -28,4 +30,13 @@ function stringCreate(receipe) {
         concat += ingredient.ingredient;
     }
     return concat
+}
+
+function displayMessageOrNot() {
+    let messageContainer = document.querySelector("section.message-container");
+    if (mainSearchStatus === "No receipe found") {
+        messageContainer.style.display = "block";
+    } else {
+        messageContainer.style.display = "none";
+    }
 }

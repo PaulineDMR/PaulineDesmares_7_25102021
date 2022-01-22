@@ -38,7 +38,7 @@ input:focus-visible {
 .main-search {
   background: #E7E7E7;
   border-radius: 5px;
-  Width: 100%;
+  width: 100%;
   padding: 0 22px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -435,6 +435,27 @@ input:focus-visible {
     width: 100%;
     padding-top: 20px;
   }
+}
+
+/* No receipe message */
+.message-container {
+  text-align: center;
+  padding-top: 100px;
+  margin-bottom: 100px;
+  display: none;
+}
+
+.no-recipe-message {
+  width: auto;
+}
+
+.no-recipe-message__text {
+  color: #ED6454;
+  font-size: 20px;
+  padding: 20px;
+  border: 2px solid #ED6454;
+  border-radius: 4px;
+  display: inline;
 }
 
 /*@import "./pages/about";

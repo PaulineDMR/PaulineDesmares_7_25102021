@@ -2,7 +2,7 @@
 .main-search {
     background: $lightgray;
     border-radius: 5px;
-    Width: 100%;
+    width: 100%;
     padding: 0 22px;
     display: flex;
     justify-content: space-between;
@@ -264,5 +264,25 @@
             width: 100%;
             padding-top: 20px;
         }
+    }
+}
+
+/* No receipe message */
+.message-container {
+    text-align: center;
+    padding-top: 100px;
+    margin-bottom: 100px;
+    display: none;
+}
+
+.no-recipe-message {
+    width: auto;
+    &__text {
+        color: $filter3-color;
+        font-size: 20px;
+        padding: 20px;
+        border: 2px solid $filter3-color;
+        border-radius: 4px;
+        display: inline;
     }
 }
