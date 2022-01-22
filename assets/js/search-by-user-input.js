@@ -18,12 +18,12 @@
         }  
     }
     if (filteredReceipesId.length > 0) {
-        searchStatus = "Receipes found";
+        mainSearchStatus = "Receipes found";
         generateNewReceipesList();
         removeThumb();
         displayReceipes(newReceipesList);
     } else if (filteredReceipesId.length === 0) {
-        searchStatus = "No receipe found";
+        mainSearchStatus = "No receipe found";
         alert("Pas de recette avec vos critères de recherche");
     }
     console.log(filteredReceipesId.length);

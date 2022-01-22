@@ -11,7 +11,9 @@ function searchByTag(receipesList) {
         }
         displayReceipes(newReceipesList);
         generateAllFiltersList(newReceipesList);
+        TagSearchStatus = "Receipes found";
     } else {
+        TagSearchStatus = "No search";
         displayReceipes(receipesList);
         generateAllFiltersList(receipesList);
     }   
