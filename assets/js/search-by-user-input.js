@@ -17,7 +17,6 @@ function searchByUserInput(inputValue) {
         mainSearchStatus = "No receipe found";
         removeThumb();
     }
-
     displayMessageOrNot();
     console.log(filteredReceipesId.length);
 }
