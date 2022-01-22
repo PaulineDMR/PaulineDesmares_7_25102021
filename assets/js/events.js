@@ -9,6 +9,7 @@ function userPressKeyInMainSearch() {
         } else {
             removeThumb();
             displayReceipes(recipes);
+            mainSearchStatus = "No search";
         }
     });
 }
